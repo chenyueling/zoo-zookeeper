@@ -21,7 +21,7 @@ class Default < Thor
   end
 
   desc 'upload ENVIRONMENT', "Upload to named environment on s3"
-  def upload(env = "local")
+  def upload(env = "vagrant")
     run "rm -rf cookbooks/"
     thor "berkshelf:package"
 
@@ -30,7 +30,7 @@ class Default < Thor
 
     AWS.config(access_key_id: ENV['S3_ACCESS_ID'], secret_access_key: ENV['S3_ACCESS_KEY'])
     s3 = AWS::S3.new
-    obj = s3.buckets['zooniverse-code'].objects["cookbooks/#{env}/#{metadata.name}/cookbooks.tar.gz"]
+    obj = s3.buckets['zooniverse-code'].objects["cookbooks/#{env}/#{metadata.name}.tar.gz"]
     obj.write(file: "./package.tar.gz")
 
     run "rm package.tar.gz"
