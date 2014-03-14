@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: zoo-zookeeper
-# Recipe:: ec2 
+# Recipe:: staging
 #
 # Copyright 2014, Zooniverse
 #
@@ -17,25 +17,4 @@
 # limitations under the License.
 #
 
-node.default['zookeeper']['data_device'] = '/dev/xvdf'
-node.default['zookeeper']['data_log_device'] = '/dev/xvdg'
-
-include_recipe "aws"
-
-aws_ebs_volume "zoo_data" do
-  size 40
-  device node['zookeeper']['data_device']
-  volume_type "io1"
-  piops 250
-  action [:create, :attach]
-end
-
-aws_ebs_volume "zoo_log" do
-  size 40
-  device node['zookeeper']['data_log_device']
-  volume_type "io1"
-  piops 250
-  action [:create, :attach]
-end
-
-include_recipe "zoo-zookeeper::default"
+include_recipe "zoo-zookeeper::ec2"

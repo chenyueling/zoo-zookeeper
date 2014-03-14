@@ -17,7 +17,7 @@ class Default < Thor
   desc 'up', "Installs depedencies and runs vagrant up"
   def up
     invoke :install
-    `vagrant up`
+    run "vagrant up"
   end
 
   desc 'upload ENVIRONMENT', "Upload to named environment on s3"
