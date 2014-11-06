@@ -1,7 +1,10 @@
 FROM ubuntu:14.04
 
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y zookeeper
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update && apt-get -y upgrade && \
+    apt-get install -y zookeeper && \
+    apt-get clean
 
 EXPOSE 2888 3888 2181
 
