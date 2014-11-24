@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM zooniverse/java
 
 ENV DEBIAN_FRONTEND noninteractive
 
