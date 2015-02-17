@@ -15,7 +15,7 @@ fi
 
 if [ ! -e /var/lib/zookeeper/myid ] && [ -e /etc/zookeeper/conf/myid ]
 then
-    ln -s /var/lib/zookeeper/myid /etc/zookeeper/conf/myid
+    ln -s /etc/zookeeper/conf/myid /var/lib/zookeeper/myid
 fi
 
 exec /usr/bin/supervisord
