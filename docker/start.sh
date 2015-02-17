@@ -13,4 +13,9 @@ then
     echo $MYID > /etc/zookeeper/conf/myid
 fi
 
+if [ ! -e /var/lib/zookeeper/myid ] && [ -e /etc/zookeeper/conf/myid ]
+then
+    ln -s /var/lib/zookeeper/myid /etc/zookeeper/conf/myid
+fi
+
 exec /usr/bin/supervisord
