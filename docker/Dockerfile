@@ -9,7 +9,7 @@ RUN apt-get update && apt-get -y upgrade && \
 ADD start.sh /
 ADD supervisor.conf /etc/supervisor/conf.d/zookeeper.conf
 
-RUN rm -f /etc/zookeeper/conf/zoo.cfg && ln -s /config/zoo.cfg /etc/zookeeper/conf/zoo.cfg
+RUN mkdir -p /config && mv /etc/zookeeper/conf/zoo.cfg /config/zoo.cfg && ln -s /config/zoo.cfg /etc/zookeeper/conf/zoo.cfg
 
 EXPOSE 2888 3888 2181
 
